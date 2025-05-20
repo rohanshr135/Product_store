@@ -4,27 +4,14 @@ import { Link } from 'react-router-dom';
 import { FaPlusSquare } from 'react-icons/fa';
 import { IoMoon } from "react-icons/io5";
 import { LuSun } from "react-icons/lu";
+import { useColorMode } from './ui/color-mode';
+import { useProductStore } from '@/store/product';
 
 
 
 
 const Navbar = () => {
-    const [isDark, setIsDark] = useState(true);
-
-    const toggleMode = () => {
-        setIsDark(prev => !prev);
-    };
-
-    useEffect(() => {
-        // Apply the background color and text color based on the mode
-        if (isDark) {
-        document.body.style.backgroundColor = "#1A202C"; // Dark background
-        document.body.style.color = "#fff"; // White text for dark mode
-        } else {
-        document.body.style.backgroundColor = "#fff"; // Light background
-        document.body.style.color = "#000"; // Black text for light mode
-        }
-    }, [isDark]); // Runs whenever the mode changes
+    const {colorMode, toggleColorMode}=useColorMode();
   return (
     <Container maxW={"1140px"} px={4}>
       <Flex
@@ -66,7 +53,7 @@ const Navbar = () => {
                 </IconButton>
             </Link>
                         <IconButton
-                            onClick={toggleMode}
+                            onClick={toggleColorMode}
                             aria-label="Toggle Color Mode"
                             backgroundColor="rgba(0, 0, 0, 0.6)"
                             color="blue.400"
@@ -74,7 +61,7 @@ const Navbar = () => {
                             _active={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
                             borderRadius="md"
                             padding={3}
-    >{isDark ? <LuSun size="20" /> : <IoMoon size="20" />}</IconButton>
+    >{colorMode === "light" ? <IoMoon /> : <LuSun size='20' />}</IconButton>
           
         </HStack>
       </Flex>
