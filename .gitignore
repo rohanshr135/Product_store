@@ -24,3 +24,13 @@ dist-ssr
 *.sln
 *.sw?
 
+# Ignore frontend build output (if using Vite/React)
+frontend/node_modules
+frontend/dist
+
+# Ignore backend build output (if any)
+backend/node_modules
+
+# Ignore OS-specific files
+Thumbs.db
+
