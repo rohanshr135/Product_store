@@ -10,12 +10,15 @@ const CreatePage = () => {
         image: "",
     });
     const {createProduct}= useProductStore()
-    const handleAddProduct = async() => {
-            // Convert price to number
+    const handleAddProduct = async () => {
+    // Convert price to number
     const productToSend = { ...newProduct, price: Number(newProduct.price) };
     const { success, message } = await createProduct(productToSend);
     console.log("Product added:", productToSend);
-    };
+    if (success) {
+        setNewProduct({ name: "", price: "", image: "" }); // Clear inputs on success
+    }
+};
     
     return (
         <Container maxW="50%">
